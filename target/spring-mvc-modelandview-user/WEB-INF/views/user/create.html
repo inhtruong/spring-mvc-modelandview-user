@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="/layout/head :: head"></th:block>
+<body>
+    <div class="container-fluid">
+        <div class="h2">Add New User</div>
+        <form th:action="@{/users/save-insert}" th:object="${user}" method="POST">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputName">Name: </label>
+                    <input th:field="*{name}" type="text" class="form-control" id="inputName">
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputEmail">Email</label>
+                    <input th:field="*{email}" type="email" class="form-control" id="inputEmail">
+                    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Name Error</span>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputCountry">Country</label>
+                    <input th:field="*{country}" type="text" class="form-control" id="inputCountry">
+                    <span th:if="${#fields.hasErrors('country')}" th:errors="*{country}">Name Error</span>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputBalance">Balance</label>
+                    <input th:field="*{balance}" type="number" class="form-control" id="inputBalance" th:value="0">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+            <a th:href="@{/users}" class="btn btn-outline-dark">Back to home</a>
+            <div th:if="success != null" th:value="success"></div>
+        </form>
+    </div>
+</body>
+</html>

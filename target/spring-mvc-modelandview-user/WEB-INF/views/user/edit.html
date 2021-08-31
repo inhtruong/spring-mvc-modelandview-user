@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="/layout/head :: head"></th:block>
+<body>
+<div class="container-fluid">
+  <div class="h2">Edit User</div>
+  <form th:action="@{/users/save-edit}" th:object="${user}" method="POST">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputName">Name: </label>
+        <input th:field="*{id}" type="hidden">
+        <input th:field="*{name}" type="text" class="form-control" id="inputName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputEmail">Email</label>
+        <input th:field="*{email}" type="email" class="form-control" id="inputEmail">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="inputCountry">Country</label>
+        <input th:field="*{country}" type="text" class="form-control" id="inputCountry">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputBalance">Balance</label>
+        <input th:field="*{balance}" type="number" class="form-control" id="inputBalance">
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Edit</button>
+    <a th:href="@{/users}" class="btn btn-outline-dark">Back to home</a>
+    <div th:if="success != null" th:value="success"></div>
+  </form>
+</div>
+</body>
+</html>

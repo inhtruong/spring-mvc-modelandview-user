@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="/layout/head :: head"></th:block>
+<body>
+<div class="container-fluid">
+    <div class="mt-2">
+        <div class="h2">Display all users</div>
+        <div>
+            <a th:href="@{/users/create}" class="btn btn-primary">Add New User</a>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <!-- <th scope="col" hidden>#</th> -->
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Country</th>
+                <th scope="col">Country</th>
+                <th scope="col">Deposit</th>
+                <th scope="col">Withdraw</th>
+                <th scope="col">Transfer</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user,userStat : ${userList}">
+                    <td th:text="${user.getId()}"></td>
+                    <td th:text="${user.getName()}"></td>
+                    <td th:text="${user.getEmail()}"></td>
+                    <td th:text="${user.getCountry()}"></td>
+                    <td th:text="${user.getBalance()}"></td>
+                    <td><a class="btn btn-outline-success" th:href="@{/users/service/deposit/{id}(id=${user.getId()})}">Deposit</a></td>
+                    <td><a class="btn btn-outline-success" th:href="@{/users/withdraw/{id}(id=${user.getId()})}">Withdraw</a></td>
+                    <td><a class="btn btn-outline-success" th:href="@{/users/transfer/{id}(id=${user.getId()})}">Transfer</a></td>
+                    <td><a class="btn btn-outline-primary" th:href="@{/users/edit/{id}(id=${user.getId()})}">Edit</a></td>
+                    <td><a class="btn btn-outline-danger" th:href="@{/users/delete/{id}(id=${user.getId()})}">Delete</a></td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
